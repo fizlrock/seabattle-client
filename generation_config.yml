@@ -1,0 +1,15 @@
+
+generatorName: java
+outputDir: output
+library: retrofit2
+inputSpec: api.yml
+additionalProperties:
+  modelPackage: dev.fizlrock.seabattle.model
+  apiPackage: dev.fizlrock.seabattle.api
+  invokerPackage: dev.fizlrock.seabattle.invoker
+  groupId: dev.fizlrock
+  artifactVersion: '2'
+  artifactId: seabattle-client
+  hideGenerationTimestamp: "true"
+  generateBuilders: true
+  # useReflectionEqualsHashCode: "true"

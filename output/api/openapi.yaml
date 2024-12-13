@@ -1,0 +1,487 @@
+openapi: 3.1.0
+info:
+  contact:
+    email: nirku0soft@yandex.ru
+  description: Сервис для игры в морской бой
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: Seabattle API
+  version: 0.0.1
+servers:
+- url: http://localhost:8081
+- url: https://107.172.142.23:1234
+tags: []
+paths:
+  /token:
+    get:
+      operationId: getToken
+      responses:
+        "200":
+          description: Авторизация успешно пройдена.
+          headers:
+            Authorization:
+              description: JWT токен для дальнейшей аутентификации
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "401":
+          description: Проблема с аутентификацией
+      security:
+      - basicHttpAuthentication: []
+      summary: |
+        Получить токен авторизации
+      tags:
+      - auth
+      x-accepts:
+      - application/json
+  /user:
+    post:
+      operationId: registerUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registrationRequestBody'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user_profile_dto'
+          description: Пользователь успешно зарегистирован
+      summary: |
+        Регистрация пользователя
+      tags:
+      - auth
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /user/profile:
+    get:
+      operationId: getUserProfile
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user_profile_dto'
+          description: Профиль пользователя
+      security:
+      - bearerAuth: []
+      summary: |
+        Получить профиль пользователя
+      tags:
+      - profile
+      x-accepts:
+      - application/json
+  /user/{userId}/avatar/{avatarId}:
+    post:
+      operationId: setAvatar
+      parameters:
+      - explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          format: int64
+          minimum: 0
+          type: integer
+        style: simple
+      - explode: false
+        in: path
+        name: avatarId
+        required: true
+        schema:
+          format: int64
+          minimum: 0
+          type: integer
+        style: simple
+      responses:
+        "200":
+          description: Аватар успешно установлен
+      security:
+      - bearerAuth: []
+      summary: Установить аватар для пользователя
+      tags:
+      - profile
+      x-accepts:
+      - application/json
+  /avatar:
+    get:
+      operationId: getAvatars
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/avatar_list_dto'
+          description: Список аватаров
+      summary: Получить список доступных аватаров
+      tags:
+      - profile
+      x-accepts:
+      - application/json
+  /placement/strategy:
+    get:
+      operationId: getPlacementStrategies
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/placement_strategy_dto'
+          description: Список стратегий расстановки
+      security:
+      - bearerAuth: []
+      summary: |
+        Получить список стратегий создания карты расстановкий кораблей
+      tags:
+      - placements
+      x-accepts:
+      - application/json
+  /placement/generated/{strategyId}:
+    get:
+      operationId: getGeneratedBoatSpec
+      parameters:
+      - description: ID стратегии генерации
+        explode: false
+        in: path
+        name: strategyId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/boat_cords_dto'
+          description: Расстановка кораблей
+      security:
+      - bearerAuth: []
+      summary: |
+        Сгенерировать расстановку кораблей по заданной стратегии
+      tags:
+      - placements
+      x-accepts:
+      - application/json
+  /game/settings:
+    get:
+      operationId: getGameSettings
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/game_settings_dto'
+          description: Настройки игры
+      summary: |
+        Получить список параметров игры
+      tags:
+      - game
+      x-accepts:
+      - application/json
+  /game/shot:
+    post:
+      operationId: makeShot
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/shot_dto'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/game_state_dto'
+          description: Состояние карты
+      security:
+      - bearerAuth: []
+      summary: Сделать выстрел по полю противника
+      tags:
+      - game
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /game:
+    get:
+      description: "Получить состояние игры, если оно изменилось(вебхук).\nВ парам\
+        етрах необходимо указать текущую версию состояния игры - currentState.\nЕс\
+        ли currentStateNumber не совпадет с stateNumber сервер вернет текущий game_state_dto.\
+        \ \nТак же сервер вернет game_state_dto если истечет таймаут. \n"
+      operationId: getUpdatedGameState
+      parameters:
+      - explode: true
+        in: query
+        name: currentStateNumber
+        required: true
+        schema:
+          format: int64
+          minimum: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/game_state_dto'
+          description: Новое состояние игры.
+        "208":
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#/components/schemas/game_state_dto'
+          description: |
+            Cостояние игры с переданным currentStateNumber.
+            Такой ответ означает истечение таймаута.
+      security:
+      - bearerAuth: []
+      summary: "Получить состояние игры, если оно изменилось(вебхук)."
+      tags:
+      - game
+      x-accepts:
+      - applicaton/json
+    post:
+      description: Начать новую игру
+      operationId: startNewGame
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/boat_cords_dto'
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/game_state_dto'
+          description: Состояние игры
+      security:
+      - bearerAuth: []
+      summary: Начать новую игру
+      tags:
+      - game
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+components:
+  schemas:
+    shot_dto:
+      properties:
+        x:
+          format: int32
+          type: integer
+        "y":
+          format: int32
+          type: integer
+      required:
+      - x
+      - "y"
+      descriptioin: Координаты выстрела
+    game_state_dto:
+      description: Состояние игры
+      example:
+        your_field: your_field
+        oponent_name: oponent_name
+        you_shoting: true
+        change_count: 0
+        oponent_field: oponent_field
+        status: Started
+      properties:
+        change_count:
+          format: int64
+          minimum: 0
+          type: integer
+        status:
+          description: Этап жизненного цикла игры
+          enum:
+          - Started
+          - WaitingSecondPlayer
+          - Ended
+          - Failed
+          type: string
+        oponent_name:
+          type: string
+        you_shoting:
+          description: Ваша ли очередь делать выстрел
+          type: boolean
+        your_field:
+          description: |
+            Состояние игрового поля
+          type: string
+        oponent_field:
+          description: |
+            Состояние игрового поля
+          type: string
+      required:
+      - status
+    field_state_dto:
+      description: |
+        Состояние игрового поля
+      type: string
+    game_settings_dto:
+      description: Описание правил игры в морской бой
+      example:
+        game_map_settings_dto:
+          width: 1
+          height: 1
+        boat_types_dto:
+        - size: 1
+          count: 1
+        - size: 1
+          count: 1
+      properties:
+        boat_types_dto:
+          description: Список допустимых видов кораблей
+          items:
+            $ref: '#/components/schemas/boat_type_dto'
+          type: array
+        game_map_settings_dto:
+          $ref: '#/components/schemas/game_map_settings_dto'
+      required:
+      - boat_types_dto
+      - game_map_settings_dto
+    placement_strategy_dto:
+      description: |
+        Стратегия расстановки кораблей
+      example:
+        name: name
+        id: 0
+      properties:
+        id:
+          format: int64
+          minimum: 0
+          type: integer
+        name:
+          type: string
+      required:
+      - id
+      - name
+    boat_cords_dto:
+      description: Описание расположений кораблей на карте
+      items:
+        $ref: '#/components/schemas/boat_cord_dto'
+      type: array
+    boat_cord_dto:
+      description: Описание расположения одного корабля на карте
+      example:
+        ys: 6
+        xs: 0
+        ye: 5
+        xe: 1
+      properties:
+        xs:
+          description: Координата начала корабля по оси X
+          format: int32
+          type: integer
+        ys:
+          description: Координата начала корабля по оси Y
+          format: int32
+          type: integer
+        xe:
+          description: Координата конца корабля по оси X
+          format: int32
+          type: integer
+        ye:
+          description: Координата конца корабля по оси Y
+          format: int32
+          type: integer
+    game_map_settings_dto:
+      description: Описание свойств игрового поля
+      example:
+        width: 1
+        height: 1
+      properties:
+        width:
+          description: Ширина поля в клетках
+          format: int32
+          minimum: 1
+          type: integer
+        height:
+          description: Высота поля в клетках
+          format: int32
+          minimum: 1
+          type: integer
+      required:
+      - height
+      - width
+    boat_types_settings_dto:
+      description: Список допустимых видов кораблей
+      items:
+        $ref: '#/components/schemas/boat_type_dto'
+      type: array
+    boat_type_dto:
+      description: Описание вида корабля
+      example:
+        size: 1
+        count: 1
+      properties:
+        size:
+          description: Длина корабля в клетках
+          format: int32
+          minimum: 1
+          type: integer
+        count:
+          description: Кол-во кораблей данного типа в игре
+          format: int32
+          minimum: 1
+          type: integer
+    user_profile_dto:
+      allOf:
+      - $ref: '#/components/schemas/avatar_dto'
+      description: Профиль пользователя
+      example:
+        user_id: 0
+        login: login
+      properties:
+        login:
+          maxLength: 8
+          minLength: 4
+        user_id:
+          format: int64
+    avatar_list_dto:
+      description: Список допустимых аватаров
+      items:
+        $ref: '#/components/schemas/avatar_dto'
+      type: array
+    avatar_dto:
+      description: Аватар пользователя
+      example:
+        avatar_id: 0
+        picture_url: http://mypictures/IEKOR.png
+      properties:
+        avatar_id:
+          format: int64
+          type: integer
+        picture_url:
+          example: http://mypictures/IEKOR.png
+          format: url
+          type: string
+    registrationRequestBody:
+      description: Данные для аутентификации
+      properties:
+        login:
+          maxLength: 8
+          minLength: 4
+          type: string
+        password:
+          maxLength: 12
+          minLength: 4
+          type: string
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: Bearer token using a JWT
+      scheme: Bearer
+      type: http
+    basicHttpAuthentication:
+      description: Basic HTTP Authentication
+      scheme: Basic
+      type: http
+
