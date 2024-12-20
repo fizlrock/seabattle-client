@@ -9,7 +9,6 @@ info:
   title: Seabattle API
   version: 0.0.1
 servers:
-- url: http://localhost:8081
 - url: https://107.172.142.23:1234
 tags: []
 paths:
@@ -76,19 +75,10 @@ paths:
       - profile
       x-accepts:
       - application/json
-  /user/{userId}/avatar/{avatarId}:
+  /user/profile/avatar/{avatarId}:
     post:
       operationId: setAvatar
       parameters:
-      - explode: false
-        in: path
-        name: userId
-        required: true
-        schema:
-          format: int64
-          minimum: 0
-          type: integer
-        style: simple
       - explode: false
         in: path
         name: avatarId
@@ -104,6 +94,36 @@ paths:
       security:
       - bearerAuth: []
       summary: Установить аватар для пользователя
+      tags:
+      - profile
+      x-accepts:
+      - application/json
+  /user/stats:
+    post:
+      operationId: getStats
+      parameters:
+      - explode: true
+        in: query
+        name: count
+        required: false
+        schema:
+          default: 5
+          format: int64
+          minimum: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/game_stats_dto'
+                type: array
+          description: Статистика игр последних count игр
+      security:
+      - bearerAuth: []
+      summary: Получить статистику об играх пользователя
       tags:
       - profile
       x-accepts:
@@ -228,13 +248,13 @@ paths:
       responses:
         "200":
           content:
-            applicaton/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/game_state_dto'
           description: Новое состояние игры.
         "208":
           content:
-            applicaton/json:
+            application/json:
               schema:
                 $ref: '#/components/schemas/game_state_dto'
           description: |
@@ -246,7 +266,7 @@ paths:
       tags:
       - game
       x-accepts:
-      - applicaton/json
+      - application/json
     post:
       description: Начать новую игру
       operationId: startNewGame
@@ -368,6 +388,34 @@ components:
       items:
         $ref: '#/components/schemas/boat_cord_dto'
       type: array
+    game_stats_dto:
+      example:
+        hit_percentage: 14
+        shots_fired: 0
+        opponent_name: opponent_name
+        game_number: 0
+        match_duration: 0
+      properties:
+        game_number:
+          description: Порядковый номер игры
+          minimum: 0
+          type: integer
+        opponent_name:
+          description: Имя противника
+          type: string
+        shots_fired:
+          description: Количество выстрелов
+          minimum: 0
+          type: integer
+        hit_percentage:
+          description: Процент попаданий
+          maximum: 100
+          minimum: 0
+          type: integer
+        match_duration:
+          description: Длительность поединка в миллисекундах
+          minimum: 0
+          type: integer
     boat_cord_dto:
       description: Описание расположения одного корабля на карте
       example:
@@ -469,6 +517,7 @@ components:
         login:
           maxLength: 8
           minLength: 4
+          pattern: "^[^\\s]*$"
           type: string
         password:
           maxLength: 12

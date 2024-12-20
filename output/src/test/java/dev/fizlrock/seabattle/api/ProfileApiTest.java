@@ -2,6 +2,7 @@ package dev.fizlrock.seabattle.api;
 
 import dev.fizlrock.seabattle.invoker.ApiClient;
 import dev.fizlrock.seabattle.model.AvatarDto;
+import dev.fizlrock.seabattle.model.GameStatsDto;
 import dev.fizlrock.seabattle.model.UserProfileDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -38,6 +39,18 @@ public class ProfileApiTest {
         // TODO: test validations
     }
     /**
+     * Получить статистику об играх пользователя
+     *
+     * 
+     */
+    @Test
+    public void getStatsTest() {
+        Long count = null;
+        // List<GameStatsDto> response = api.getStats(count);
+
+        // TODO: test validations
+    }
+    /**
      * Получить профиль пользователя 
      *
      * 
@@ -55,9 +68,8 @@ public class ProfileApiTest {
      */
     @Test
     public void setAvatarTest() {
-        Long userId = null;
         Long avatarId = null;
-        // api.setAvatar(userId, avatarId);
+        // api.setAvatar(avatarId);
 
         // TODO: test validations
     }

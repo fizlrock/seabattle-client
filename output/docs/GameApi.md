@@ -1,6 +1,6 @@
 # GameApi
 
-All URIs are relative to *http://localhost:8081*
+All URIs are relative to *https://107.172.142.23:1234*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
@@ -30,7 +30,7 @@ import dev.fizlrock.seabattle.api.GameApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:8081");
+        defaultClient.setBasePath("https://107.172.142.23:1234");
 
         GameApi apiInstance = new GameApi(defaultClient);
         try {
@@ -93,7 +93,7 @@ import dev.fizlrock.seabattle.api.GameApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:8081");
+        defaultClient.setBasePath("https://107.172.142.23:1234");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -133,7 +133,7 @@ public class Example {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: applicaton/json
+- **Accept**: application/json
 
 
 ### HTTP response details
@@ -163,7 +163,7 @@ import dev.fizlrock.seabattle.api.GameApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:8081");
+        defaultClient.setBasePath("https://107.172.142.23:1234");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
@@ -234,7 +234,7 @@ import dev.fizlrock.seabattle.api.GameApi;
 public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("http://localhost:8081");
+        defaultClient.setBasePath("https://107.172.142.23:1234");
         
         // Configure HTTP bearer authorization: bearerAuth
         HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");

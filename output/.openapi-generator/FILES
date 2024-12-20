@@ -14,6 +14,7 @@ docs/GameApi.md
 docs/GameMapSettingsDto.md
 docs/GameSettingsDto.md
 docs/GameStateDto.md
+docs/GameStatsDto.md
 docs/PlacementStrategyDto.md
 docs/PlacementsApi.md
 docs/ProfileApi.md
@@ -49,6 +50,7 @@ src/main/java/dev/fizlrock/seabattle/model/BoatTypeDto.java
 src/main/java/dev/fizlrock/seabattle/model/GameMapSettingsDto.java
 src/main/java/dev/fizlrock/seabattle/model/GameSettingsDto.java
 src/main/java/dev/fizlrock/seabattle/model/GameStateDto.java
+src/main/java/dev/fizlrock/seabattle/model/GameStatsDto.java
 src/main/java/dev/fizlrock/seabattle/model/PlacementStrategyDto.java
 src/main/java/dev/fizlrock/seabattle/model/RegistrationRequestBody.java
 src/main/java/dev/fizlrock/seabattle/model/ShotDto.java
@@ -63,6 +65,7 @@ src/test/java/dev/fizlrock/seabattle/model/BoatTypeDtoTest.java
 src/test/java/dev/fizlrock/seabattle/model/GameMapSettingsDtoTest.java
 src/test/java/dev/fizlrock/seabattle/model/GameSettingsDtoTest.java
 src/test/java/dev/fizlrock/seabattle/model/GameStateDtoTest.java
+src/test/java/dev/fizlrock/seabattle/model/GameStatsDtoTest.java
 src/test/java/dev/fizlrock/seabattle/model/PlacementStrategyDtoTest.java
 src/test/java/dev/fizlrock/seabattle/model/RegistrationRequestBodyTest.java
 src/test/java/dev/fizlrock/seabattle/model/ShotDtoTest.java

@@ -107,7 +107,7 @@ public class ApiClient {
   public void createDefaultAdapter() {
     json = new JSON();
 
-    String baseUrl = "http://localhost:8081";
+    String baseUrl = "https://107.172.142.23:1234";
     if (!baseUrl.endsWith("/"))
       baseUrl = baseUrl + "/";
 
