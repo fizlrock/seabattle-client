@@ -62,6 +62,18 @@ public class ProfileApiTest {
         // TODO: test validations
     }
     /**
+     * Получить профиль пользователя 
+     *
+     * 
+     */
+    @Test
+    public void getUserProfileByIdTest() {
+        Long userId = null;
+        // UserProfileDto response = api.getUserProfileById(userId);
+
+        // TODO: test validations
+    }
+    /**
      * Установить аватар для пользователя
      *
      * 

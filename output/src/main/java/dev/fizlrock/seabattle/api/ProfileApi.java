@@ -50,6 +50,17 @@ public interface ProfileApi {
     
 
   /**
+   * Получить профиль пользователя 
+   * 
+   * @param userId  (required)
+   * @return Call&lt;UserProfileDto&gt;
+   */
+  @GET("user/profile/{userId}")
+  Call<UserProfileDto> getUserProfileById(
+    @retrofit2.http.Path("userId") Long userId
+  );
+
+  /**
    * Установить аватар для пользователя
    * 
    * @param avatarId  (required)
