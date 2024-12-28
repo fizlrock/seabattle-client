@@ -88,10 +88,10 @@ public class GameStateDto {
   @javax.annotation.Nonnull
   private StatusEnum status;
 
-  public static final String SERIALIZED_NAME_OPONENT_NAME = "oponent_name";
-  @SerializedName(SERIALIZED_NAME_OPONENT_NAME)
+  public static final String SERIALIZED_NAME_OPONENT_ID = "oponent_id";
+  @SerializedName(SERIALIZED_NAME_OPONENT_ID)
   @javax.annotation.Nullable
-  private String oponentName;
+  private Long oponentId;
 
   public static final String SERIALIZED_NAME_YOU_SHOTING = "you_shoting";
   @SerializedName(SERIALIZED_NAME_YOU_SHOTING)
@@ -154,25 +154,25 @@ public class GameStateDto {
     this.status = status;
   }
 
-  public GameStateDto oponentName(@javax.annotation.Nullable String oponentName) {
+  public GameStateDto oponentId(@javax.annotation.Nullable Long oponentId) {
     
-    this.oponentName = oponentName;
+    this.oponentId = oponentId;
     return this;
   }
 
   /**
-   * Get oponentName
-   * @return oponentName
+   * Get oponentId
+   * @return oponentId
    */
   @javax.annotation.Nullable
 
-  public String getOponentName() {
-    return oponentName;
+  public Long getOponentId() {
+    return oponentId;
   }
 
 
-  public void setOponentName(@javax.annotation.Nullable String oponentName) {
-    this.oponentName = oponentName;
+  public void setOponentId(@javax.annotation.Nullable Long oponentId) {
+    this.oponentId = oponentId;
   }
 
   public GameStateDto youShoting(@javax.annotation.Nullable Boolean youShoting) {
@@ -249,7 +249,7 @@ public class GameStateDto {
     GameStateDto gameStateDto = (GameStateDto) o;
     return Objects.equals(this.changeCount, gameStateDto.changeCount) &&
         Objects.equals(this.status, gameStateDto.status) &&
-        Objects.equals(this.oponentName, gameStateDto.oponentName) &&
+        Objects.equals(this.oponentId, gameStateDto.oponentId) &&
         Objects.equals(this.youShoting, gameStateDto.youShoting) &&
         Objects.equals(this.yourField, gameStateDto.yourField) &&
         Objects.equals(this.oponentField, gameStateDto.oponentField);
@@ -257,7 +257,7 @@ public class GameStateDto {
 
   @Override
   public int hashCode() {
-    return Objects.hash(changeCount, status, oponentName, youShoting, yourField, oponentField);
+    return Objects.hash(changeCount, status, oponentId, youShoting, yourField, oponentField);
   }
 
   @Override
@@ -266,7 +266,7 @@ public class GameStateDto {
     sb.append("class GameStateDto {\n");
     sb.append("    changeCount: ").append(toIndentedString(changeCount)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    oponentName: ").append(toIndentedString(oponentName)).append("\n");
+    sb.append("    oponentId: ").append(toIndentedString(oponentId)).append("\n");
     sb.append("    youShoting: ").append(toIndentedString(youShoting)).append("\n");
     sb.append("    yourField: ").append(toIndentedString(yourField)).append("\n");
     sb.append("    oponentField: ").append(toIndentedString(oponentField)).append("\n");
@@ -305,8 +305,8 @@ public class GameStateDto {
       this.instance.status = status;
       return this;
     }
-    public GameStateDto.Builder oponentName(String oponentName) {
-      this.instance.oponentName = oponentName;
+    public GameStateDto.Builder oponentId(Long oponentId) {
+      this.instance.oponentId = oponentId;
       return this;
     }
     public GameStateDto.Builder youShoting(Boolean youShoting) {
@@ -357,7 +357,7 @@ public class GameStateDto {
     return new GameStateDto.Builder()
       .changeCount(getChangeCount())
       .status(getStatus())
-      .oponentName(getOponentName())
+      .oponentId(getOponentId())
       .youShoting(getYouShoting())
       .yourField(getYourField())
       .oponentField(getOponentField());

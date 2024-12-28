@@ -54,11 +54,11 @@ class GameStateDtoTest {
     }
 
     /**
-     * Test the property 'oponentName'
+     * Test the property 'oponentId'
      */
     @Test
-    void oponentNameTest() {
-        // TODO: test oponentName
+    void oponentIdTest() {
+        // TODO: test oponentId
     }
 
     /**

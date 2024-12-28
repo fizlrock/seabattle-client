@@ -10,7 +10,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**changeCount** | **Long** |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Этап жизненного цикла игры |  |
-|**oponentName** | **String** |  |  [optional] |
+|**oponentId** | **Long** |  |  [optional] |
 |**youShoting** | **Boolean** | Ваша ли очередь делать выстрел |  [optional] |
 |**yourField** | **String** | Состояние игрового поля  |  [optional] |
 |**oponentField** | **String** | Состояние игрового поля  |  [optional] |

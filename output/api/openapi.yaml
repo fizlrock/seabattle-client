@@ -336,9 +336,9 @@ components:
       description: Состояние игры
       example:
         your_field: your_field
-        oponent_name: oponent_name
         you_shoting: true
         change_count: 0
+        oponent_id: 6
         oponent_field: oponent_field
         status: Started
       properties:
@@ -354,8 +354,9 @@ components:
           - Ended
           - Failed
           type: string
-        oponent_name:
-          type: string
+        oponent_id:
+          format: int64
+          type: integer
         you_shoting:
           description: Ваша ли очередь делать выстрел
           type: boolean
