@@ -27,54 +27,49 @@ import java.io.IOException;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.10.0")
 public class GameStatsDto {
-  public static final String SERIALIZED_NAME_GAME_NUMBER = "game_number";
-  @SerializedName(SERIALIZED_NAME_GAME_NUMBER)
+  public static final String SERIALIZED_NAME_NUMBER = "number";
+  @SerializedName(SERIALIZED_NAME_NUMBER)
   @javax.annotation.Nullable
-  private Integer gameNumber;
+  private Integer number;
 
   public static final String SERIALIZED_NAME_OPPONENT_NAME = "opponent_name";
   @SerializedName(SERIALIZED_NAME_OPPONENT_NAME)
   @javax.annotation.Nullable
   private String opponentName;
 
-  public static final String SERIALIZED_NAME_SHOTS_FIRED = "shots_fired";
-  @SerializedName(SERIALIZED_NAME_SHOTS_FIRED)
-  @javax.annotation.Nullable
-  private Integer shotsFired;
-
   public static final String SERIALIZED_NAME_HIT_PERCENTAGE = "hit_percentage";
   @SerializedName(SERIALIZED_NAME_HIT_PERCENTAGE)
   @javax.annotation.Nullable
   private Integer hitPercentage;
 
-  public static final String SERIALIZED_NAME_MATCH_DURATION = "match_duration";
-  @SerializedName(SERIALIZED_NAME_MATCH_DURATION)
+  public static final String SERIALIZED_NAME_DURATION = "duration";
+  @SerializedName(SERIALIZED_NAME_DURATION)
   @javax.annotation.Nullable
-  private Integer matchDuration;
+  private Integer duration;
 
   public GameStatsDto() {
   }
 
-  public GameStatsDto gameNumber(@javax.annotation.Nullable Integer gameNumber) {
+  public GameStatsDto number(@javax.annotation.Nullable Integer number) {
     
-    this.gameNumber = gameNumber;
+    this.number = number;
     return this;
   }
 
   /**
    * Порядковый номер игры
    * minimum: 0
-   * @return gameNumber
+   * @return number
    */
   @javax.annotation.Nullable
 
-  public Integer getGameNumber() {
-    return gameNumber;
+  public Integer getNumber() {
+    return number;
   }
 
 
-  public void setGameNumber(@javax.annotation.Nullable Integer gameNumber) {
-    this.gameNumber = gameNumber;
+  public void setNumber(@javax.annotation.Nullable Integer number) {
+    this.number = number;
   }
 
   public GameStatsDto opponentName(@javax.annotation.Nullable String opponentName) {
@@ -96,28 +91,6 @@ public class GameStatsDto {
 
   public void setOpponentName(@javax.annotation.Nullable String opponentName) {
     this.opponentName = opponentName;
-  }
-
-  public GameStatsDto shotsFired(@javax.annotation.Nullable Integer shotsFired) {
-    
-    this.shotsFired = shotsFired;
-    return this;
-  }
-
-  /**
-   * Количество выстрелов
-   * minimum: 0
-   * @return shotsFired
-   */
-  @javax.annotation.Nullable
-
-  public Integer getShotsFired() {
-    return shotsFired;
-  }
-
-
-  public void setShotsFired(@javax.annotation.Nullable Integer shotsFired) {
-    this.shotsFired = shotsFired;
   }
 
   public GameStatsDto hitPercentage(@javax.annotation.Nullable Integer hitPercentage) {
@@ -143,26 +116,26 @@ public class GameStatsDto {
     this.hitPercentage = hitPercentage;
   }
 
-  public GameStatsDto matchDuration(@javax.annotation.Nullable Integer matchDuration) {
+  public GameStatsDto duration(@javax.annotation.Nullable Integer duration) {
     
-    this.matchDuration = matchDuration;
+    this.duration = duration;
     return this;
   }
 
   /**
    * Длительность поединка в миллисекундах
    * minimum: 0
-   * @return matchDuration
+   * @return duration
    */
   @javax.annotation.Nullable
 
-  public Integer getMatchDuration() {
-    return matchDuration;
+  public Integer getDuration() {
+    return duration;
   }
 
 
-  public void setMatchDuration(@javax.annotation.Nullable Integer matchDuration) {
-    this.matchDuration = matchDuration;
+  public void setDuration(@javax.annotation.Nullable Integer duration) {
+    this.duration = duration;
   }
 
   @Override
@@ -174,27 +147,25 @@ public class GameStatsDto {
       return false;
     }
     GameStatsDto gameStatsDto = (GameStatsDto) o;
-    return Objects.equals(this.gameNumber, gameStatsDto.gameNumber) &&
+    return Objects.equals(this.number, gameStatsDto.number) &&
         Objects.equals(this.opponentName, gameStatsDto.opponentName) &&
-        Objects.equals(this.shotsFired, gameStatsDto.shotsFired) &&
         Objects.equals(this.hitPercentage, gameStatsDto.hitPercentage) &&
-        Objects.equals(this.matchDuration, gameStatsDto.matchDuration);
+        Objects.equals(this.duration, gameStatsDto.duration);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(gameNumber, opponentName, shotsFired, hitPercentage, matchDuration);
+    return Objects.hash(number, opponentName, hitPercentage, duration);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GameStatsDto {\n");
-    sb.append("    gameNumber: ").append(toIndentedString(gameNumber)).append("\n");
+    sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    opponentName: ").append(toIndentedString(opponentName)).append("\n");
-    sb.append("    shotsFired: ").append(toIndentedString(shotsFired)).append("\n");
     sb.append("    hitPercentage: ").append(toIndentedString(hitPercentage)).append("\n");
-    sb.append("    matchDuration: ").append(toIndentedString(matchDuration)).append("\n");
+    sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -222,24 +193,20 @@ public class GameStatsDto {
       this.instance = instance;
     }
 
-    public GameStatsDto.Builder gameNumber(Integer gameNumber) {
-      this.instance.gameNumber = gameNumber;
+    public GameStatsDto.Builder number(Integer number) {
+      this.instance.number = number;
       return this;
     }
     public GameStatsDto.Builder opponentName(String opponentName) {
       this.instance.opponentName = opponentName;
       return this;
     }
-    public GameStatsDto.Builder shotsFired(Integer shotsFired) {
-      this.instance.shotsFired = shotsFired;
-      return this;
-    }
     public GameStatsDto.Builder hitPercentage(Integer hitPercentage) {
       this.instance.hitPercentage = hitPercentage;
       return this;
     }
-    public GameStatsDto.Builder matchDuration(Integer matchDuration) {
-      this.instance.matchDuration = matchDuration;
+    public GameStatsDto.Builder duration(Integer duration) {
+      this.instance.duration = duration;
       return this;
     }
 
@@ -276,11 +243,10 @@ public class GameStatsDto {
   */
   public GameStatsDto.Builder toBuilder() {
     return new GameStatsDto.Builder()
-      .gameNumber(getGameNumber())
+      .number(getNumber())
       .opponentName(getOpponentName())
-      .shotsFired(getShotsFired())
       .hitPercentage(getHitPercentage())
-      .matchDuration(getMatchDuration());
+      .duration(getDuration());
   }
 
 

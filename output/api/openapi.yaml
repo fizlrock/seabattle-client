@@ -418,29 +418,24 @@ components:
       type: array
     game_stats_dto:
       example:
-        hit_percentage: 14
-        shots_fired: 0
+        duration: 0
+        number: 0
+        hit_percentage: 60
         opponent_name: opponent_name
-        game_number: 0
-        match_duration: 0
       properties:
-        game_number:
+        number:
           description: Порядковый номер игры
           minimum: 0
           type: integer
         opponent_name:
           description: Имя противника
           type: string
-        shots_fired:
-          description: Количество выстрелов
-          minimum: 0
-          type: integer
         hit_percentage:
           description: Процент попаданий
           maximum: 100
           minimum: 0
           type: integer
-        match_duration:
+        duration:
           description: Длительность поединка в миллисекундах
           minimum: 0
           type: integer

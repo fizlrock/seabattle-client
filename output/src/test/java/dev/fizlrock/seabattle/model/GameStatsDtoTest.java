@@ -38,11 +38,11 @@ class GameStatsDtoTest {
     }
 
     /**
-     * Test the property 'gameNumber'
+     * Test the property 'number'
      */
     @Test
-    void gameNumberTest() {
-        // TODO: test gameNumber
+    void numberTest() {
+        // TODO: test number
     }
 
     /**
@@ -54,14 +54,6 @@ class GameStatsDtoTest {
     }
 
     /**
-     * Test the property 'shotsFired'
-     */
-    @Test
-    void shotsFiredTest() {
-        // TODO: test shotsFired
-    }
-
-    /**
      * Test the property 'hitPercentage'
      */
     @Test
@@ -70,11 +62,11 @@ class GameStatsDtoTest {
     }
 
     /**
-     * Test the property 'matchDuration'
+     * Test the property 'duration'
      */
     @Test
-    void matchDurationTest() {
-        // TODO: test matchDuration
+    void durationTest() {
+        // TODO: test duration
     }
 
 }
