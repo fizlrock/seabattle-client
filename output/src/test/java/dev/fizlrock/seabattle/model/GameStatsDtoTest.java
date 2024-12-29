@@ -46,6 +46,14 @@ class GameStatsDtoTest {
     }
 
     /**
+     * Test the property 'youWin'
+     */
+    @Test
+    void youWinTest() {
+        // TODO: test youWin
+    }
+
+    /**
      * Test the property 'opponentName'
      */
     @Test

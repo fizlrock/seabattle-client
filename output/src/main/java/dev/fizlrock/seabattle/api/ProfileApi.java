@@ -35,7 +35,7 @@ public interface ProfileApi {
    * @param count  (optional, default to 5)
    * @return Call&lt;List&lt;GameStatsDto&gt;&gt;
    */
-  @POST("user/stats")
+  @GET("user/stats")
   Call<List<GameStatsDto>> getStats(
     @retrofit2.http.Query("count") Long count
   );

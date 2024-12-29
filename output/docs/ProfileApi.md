@@ -5,7 +5,7 @@ All URIs are relative to *https://107.172.142.23:1234*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**getAvatars**](ProfileApi.md#getAvatars) | **GET** avatar | Получить список доступных аватаров |
-| [**getStats**](ProfileApi.md#getStats) | **POST** user/stats | Получить статистику об играх пользователя |
+| [**getStats**](ProfileApi.md#getStats) | **GET** user/stats | Получить статистику об играх пользователя |
 | [**getUserProfile**](ProfileApi.md#getUserProfile) | **GET** user/profile | Получить профиль пользователя  |
 | [**getUserProfileById**](ProfileApi.md#getUserProfileById) | **GET** user/profile/{userId} | Получить профиль пользователя  |
 | [**setAvatar**](ProfileApi.md#setAvatar) | **POST** user/profile/avatar/{avatarId} | Установить аватар для пользователя |

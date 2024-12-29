@@ -32,6 +32,11 @@ public class GameStatsDto {
   @javax.annotation.Nullable
   private Integer number;
 
+  public static final String SERIALIZED_NAME_YOU_WIN = "you_win";
+  @SerializedName(SERIALIZED_NAME_YOU_WIN)
+  @javax.annotation.Nullable
+  private Boolean youWin;
+
   public static final String SERIALIZED_NAME_OPPONENT_NAME = "opponent_name";
   @SerializedName(SERIALIZED_NAME_OPPONENT_NAME)
   @javax.annotation.Nullable
@@ -70,6 +75,27 @@ public class GameStatsDto {
 
   public void setNumber(@javax.annotation.Nullable Integer number) {
     this.number = number;
+  }
+
+  public GameStatsDto youWin(@javax.annotation.Nullable Boolean youWin) {
+    
+    this.youWin = youWin;
+    return this;
+  }
+
+  /**
+   * Get youWin
+   * @return youWin
+   */
+  @javax.annotation.Nullable
+
+  public Boolean getYouWin() {
+    return youWin;
+  }
+
+
+  public void setYouWin(@javax.annotation.Nullable Boolean youWin) {
+    this.youWin = youWin;
   }
 
   public GameStatsDto opponentName(@javax.annotation.Nullable String opponentName) {
@@ -148,6 +174,7 @@ public class GameStatsDto {
     }
     GameStatsDto gameStatsDto = (GameStatsDto) o;
     return Objects.equals(this.number, gameStatsDto.number) &&
+        Objects.equals(this.youWin, gameStatsDto.youWin) &&
         Objects.equals(this.opponentName, gameStatsDto.opponentName) &&
         Objects.equals(this.hitPercentage, gameStatsDto.hitPercentage) &&
         Objects.equals(this.duration, gameStatsDto.duration);
@@ -155,7 +182,7 @@ public class GameStatsDto {
 
   @Override
   public int hashCode() {
-    return Objects.hash(number, opponentName, hitPercentage, duration);
+    return Objects.hash(number, youWin, opponentName, hitPercentage, duration);
   }
 
   @Override
@@ -163,6 +190,7 @@ public class GameStatsDto {
     StringBuilder sb = new StringBuilder();
     sb.append("class GameStatsDto {\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
+    sb.append("    youWin: ").append(toIndentedString(youWin)).append("\n");
     sb.append("    opponentName: ").append(toIndentedString(opponentName)).append("\n");
     sb.append("    hitPercentage: ").append(toIndentedString(hitPercentage)).append("\n");
     sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
@@ -195,6 +223,10 @@ public class GameStatsDto {
 
     public GameStatsDto.Builder number(Integer number) {
       this.instance.number = number;
+      return this;
+    }
+    public GameStatsDto.Builder youWin(Boolean youWin) {
+      this.instance.youWin = youWin;
       return this;
     }
     public GameStatsDto.Builder opponentName(String opponentName) {
@@ -244,6 +276,7 @@ public class GameStatsDto {
   public GameStatsDto.Builder toBuilder() {
     return new GameStatsDto.Builder()
       .number(getNumber())
+      .youWin(getYouWin())
       .opponentName(getOpponentName())
       .hitPercentage(getHitPercentage())
       .duration(getDuration());
